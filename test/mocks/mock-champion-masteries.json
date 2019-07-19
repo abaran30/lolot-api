@@ -1,0 +1,13 @@
+[
+  {
+    "championId": 41,
+    "championLevel": 7,
+    "championPoints": 253263,
+    "lastPlayTime": 1561325679000,
+    "championPointsSinceLastLevel": 231663,
+    "championPointsUntilNextLevel": 0,
+    "chestGranted": true,
+    "tokensEarned": 0,
+    "summonerId": "mock-id-200"
+  }
+]
