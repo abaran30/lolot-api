@@ -16,8 +16,9 @@ A Riot Games API key is required to use this REST API. The REST API is set up to
 
 The REST API is using CORS, but an origin has to be set (see [app.js](https://github.com/abaran30/lolot-api/blob/master/app.js)). The origin can be set to environment variable `LOLOT_ORIGIN` (see [config.js](https://github.com/abaran30/lolot-api/blob/master/config.js)).
 
-## How to Set Up and Run Locally (Once Configured)
+## How to Set Up and Run Locally
 ### Prerequisites
++ Make sure the aforementioned **Configuration** options have been addressed.
 + Make sure [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), and [npm](https://www.npmjs.com/) are installed and configured on your machine.
 
 ### Steps
