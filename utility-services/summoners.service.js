@@ -20,7 +20,8 @@ class SummonersService {
       // Return the Summoner data as our response body
       return summoner.data;
     } catch (error) {
-      throw new Error(error.message);
+      // Because this service is only used internally, throw the raw axios error and let the caller handle it appropriately
+      throw error;
     }
   }
 }

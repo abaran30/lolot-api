@@ -3,6 +3,7 @@ const axios = require('axios');
 const config = require('../../config');
 const keyToChampionMap = require('../../data/key-to-champion-map.json');
 const serviceRegionToHostMap = require('../../data/service-region-to-host-map.json');
+const ErrorHandlerService = require('../../utility-services/error-handler.service');
 const SummonersService = require('../../utility-services/summoners.service');
 
 class ChampionMasteriesService {
@@ -33,7 +34,9 @@ class ChampionMasteriesService {
       // For each Champion Mastery entry, attach the Champion name using the static map of Champion IDs to Champion names
       // Furthermore, remove the "summonerId" attribute
       championMasteries.data = championMasteries.data.map(championMastery => {
-        championMastery.championName = keyToChampionMap[championMastery['championId']];
+        const championMapping = keyToChampionMap[championMastery['championId']];
+        championMastery.championId = championMapping.id;
+        championMastery.championName = championMapping.name;
         delete championMastery.summonerId;
         return championMastery;
       });
@@ -52,7 +55,7 @@ class ChampionMasteriesService {
 
       return responseBody;
     } catch (error) {
-      throw new Error(error.message);
+      new ErrorHandlerService().handleError(error.response.status, error.response.data.status.message);
     }
   }
 }
