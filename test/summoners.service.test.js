@@ -3,6 +3,7 @@ const nock = require('nock');
 
 const config = require('../config');
 const mockSummoner = require('./mocks/mock-summoner.json');
+const mock404Error = require('./mocks/mock-404-error.json');
 const serviceRegionToHostMap = require('../data/service-region-to-host-map.json');
 const SummonersService = require('../utility-services/summoners.service');
 
@@ -30,16 +31,15 @@ describe('\"Summoners\" utility service', () => {
   it('should handle 404 response from the Summoner endpoint when getting a Summoner by name', async () => {
     nock(host)
       .get(`${endpoint}/by-name/MockSummoner404?api_key=${config.riotGamesApiKey}`)
-      .replyWithError({
-        message: 'Data not found'
-      });
+      .reply(404, mock404Error);
 
     const summonersService = new SummonersService();
 
     try {
       await summonersService.getSummonerBySummonerName('NA', 'MockSummoner404');
     } catch (error) {
-      expect(error.message).to.equal('Data not found');
+      expect(error.response.data.status.status_code).to.equal(404);
+      expect(error.response.data.status.message).to.equal('Data not found');
     }
   });
 });

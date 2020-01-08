@@ -55,7 +55,8 @@ class ChampionMasteriesService {
 
       return responseBody;
     } catch (error) {
-      new ErrorHandlerService().handleError(error.response.status, error.response.data.status.message);
+      const errorStatus = error.response.data.status;
+      new ErrorHandlerService().handleError(errorStatus.status_code, errorStatus.message);
     }
   }
 }
