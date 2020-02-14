@@ -32,17 +32,23 @@ class ChampionMasteriesService {
       });
 
       // For each Champion Mastery entry, attach the Champion name using the static map of Champion IDs to Champion names
+      // We also want to attach the square asset URL so that the UI has it readily available
       // Furthermore, remove the "summonerId" attribute
       championMasteries.data = championMasteries.data.map(championMastery => {
         const championMapping = keyToChampionMap[championMastery['championId']];
         championMastery.championId = championMapping.id;
         championMastery.championName = championMapping.name;
+        championMastery.championSquareAssetUrl =
+          `${config.riotDDragonBaseUrl}/img/champion/${championMastery.championId}.png`;
         delete championMastery.summonerId;
         return championMastery;
       });
 
       // We want to respond with the relevant Summoner data and decorated Champion Mastery data
-      // First, let's remove the unnecessary Summoner attributes
+      // First, let's add the Summoner's profile icon URL so that the UI has it readily available
+      summoner.profileIconUrl = `${config.riotDDragonBaseUrl}/img/profileicon/${summoner.profileIconId}.png`;
+
+      // Then, let's remove the unnecessary Summoner attributes
       delete summoner.id;
       delete summoner.accountId;
       delete summoner.puuid;

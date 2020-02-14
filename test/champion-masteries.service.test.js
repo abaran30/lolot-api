@@ -37,6 +37,7 @@ describe('\"Champion Masteries\" service', () => {
       expect(summoner.name).to.equal('MockSummoner200');
       expect(summoner.summonerLevel).to.equal(100);
       expect(summoner.revisionDate).to.equal(1563157688000);
+      expect(summoner.profileIconUrl).to.equal('http://ddragon.leagueoflegends.com/cdn/10.1.1/img/profileicon/2098.png');
 
       const championMasteries = championMasteriesResponse.championMasteries;
 
@@ -50,6 +51,8 @@ describe('\"Champion Masteries\" service', () => {
       expect(championMasteries[0].championPointsUntilNextLevel).to.equal(0);
       expect(championMasteries[0].chestGranted).to.equal(true);
       expect(championMasteries[0].tokensEarned).to.equal(0);
+      expect(championMasteries[0].championSquareAssetUrl).to.equal(
+        'http://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Gangplank.png');
     }
   );
 
