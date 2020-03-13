@@ -12,6 +12,8 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
+const port = process.env.PORT || 8080;
+
 app.use(cors(corsOptions));
 
 // Turn on JSON body parsing for REST services
@@ -25,4 +27,4 @@ app.configure(express.rest());
 
 app.use('api/champion-masteries', new ChampionMasteriesService());
 
-app.listen(3030, () => console.log('LOLOT REST API listening on http://localhost:3030'));
+app.listen(port, () => console.log('LOLOT REST API listening on http://localhost:3030'));
