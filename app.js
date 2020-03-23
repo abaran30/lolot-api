@@ -1,6 +1,7 @@
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
 const cors = require('cors');
+const expressRateLimit = require('express-rate-limit');
 
 const config = require('./config');
 const ChampionMasteriesService = require('./services/champion-masteries/champion-masteries.service');
@@ -25,6 +26,12 @@ app.use(express.urlencoded({ extended: true }));
 // Set up REST transport using Express
 app.configure(express.rest());
 
-app.use('api/champion-masteries', new ChampionMasteriesService());
+// Set up rate limiter to adhere to the rate limits of the Riot Games API key
+const rateLimiter = expressRateLimit({
+  windowMs: 2 * 60 * 1000, // 2 minutes
+  max: 100 // 100 requests
+});
+
+app.use('api/champion-masteries', rateLimiter, new ChampionMasteriesService());
 
 app.listen(port, () => console.log('LOLOT REST API listening on http://localhost:3030'));
