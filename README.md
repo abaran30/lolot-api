@@ -1,6 +1,6 @@
 # LOLOT API
 
-LOLOT API is a REST API used in conjunction with the LOLOT web application, which allows *League of Legends* players to keep track of their Hextech Chest rewards via Champion Mastery for the current season.
+LOLOT API is a REST API used in conjunction with the [LOLOT UI web application](https://github.com/abaran30/lolot-ui), which allows *League of Legends* players to keep track of their Hextech Chest rewards via Champion Mastery for the current season.
 
 ## Development
 
