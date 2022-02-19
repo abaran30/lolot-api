@@ -491,6 +491,10 @@
     "id": "Kindred",
     "name": "Kindred"
   },
+   "221": {
+    "id": "Zeri",
+    "name": "Zeri"
+  },
   "222": {
     "id": "Jinx",
     "name": "Jinx"
@@ -626,5 +630,9 @@
   "887": {
     "id": "Gwen",
     "name": "Gwen"
-  }
+  },
+  "888": {
+    "id": "Renata",
+    "name": "Renata Glasc"
+  },
 }
