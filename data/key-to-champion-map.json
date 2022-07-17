@@ -479,6 +479,10 @@
     "id": "Akshan",
     "name": "Akshan"
   },
+  "200": {
+    "id": "Belveth",
+    "name":"Bel'Veth"
+  },
   "201": {
     "id": "Braum",
     "name": "Braum"
@@ -634,5 +638,9 @@
   "888": {
     "id": "Renata",
     "name": "Renata Glasc"
+  },
+  "895": {
+    "id": "Nilah",
+    "name": "Nilah"
   }
 }
