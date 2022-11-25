@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const config = require('../config');
+const mockChampions = require('./mocks/mock-champions.json');
 const mockChampionMasteries = require('./mocks/mock-champion-masteries.json');
 const mockSummoner = require('./mocks/mock-summoner.json');
 const mock404Error = require('./mocks/mock-404-error.json');
@@ -24,6 +25,9 @@ describe('\"Champion Masteries\" service', () => {
       nock(config.riotDDragonBaseUrl)
         .get('/api/versions.json')
         .reply(200, ['12.22.1']);
+      nock(config.riotDDragonBaseUrl)
+        .get('/cdn/12.22.1/data/en_US/champion.json')
+        .reply(200, mockChampions);
 
       const params = {
         query: {
@@ -93,6 +97,9 @@ describe('\"Champion Masteries\" service', () => {
     nock(config.riotDDragonBaseUrl)
       .get('/api/versions.json')
       .reply(200, ['12.22.1']);
+    nock(config.riotDDragonBaseUrl)
+        .get('/cdn/12.22.1/data/en_US/champion.json')
+        .reply(200, mockChampions);
 
     const params = {
       query: {

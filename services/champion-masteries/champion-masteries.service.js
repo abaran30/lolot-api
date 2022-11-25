@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 const config = require('../../config');
-const keyToChampionMap = require('../../data/key-to-champion-map.json');
 const serviceRegionToHostMap = require('../../data/service-region-to-host-map.json');
 const ErrorHandlerService = require('../../utility-services/error-handler.service');
 const SummonersService = require('../../utility-services/summoners.service');
@@ -34,6 +33,20 @@ class ChampionMasteriesService {
       // Fetch the latest Data Dragon version and build the Data Dragon URL
       const dDragonVersions = await axios.get(`${config.riotDDragonBaseUrl}/api/versions.json`);
       const dDragonUrl = `${config.riotDDragonBaseUrl}/cdn/${dDragonVersions.data[0]}`;
+
+      // Fetch the latest Champions data from Data Dragon and build a key to champion map
+      const champions = await axios.get(`${dDragonUrl}/data/en_US/champion.json`);
+      const championsData = champions.data.data;
+      const keyToChampionMap = {};
+
+      for (const championName of Object.keys(championsData)) {
+        const champion = championsData[championName];
+
+        keyToChampionMap[champion.key] = {
+          id: champion.id,
+          name: champion.name
+        };
+      }
 
       // For each Champion Mastery entry, attach the Champion name using the static map of Champion IDs to Champion names
       // We also want to attach the square asset URL so that the UI has it readily available
