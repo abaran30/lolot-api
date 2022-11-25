@@ -21,6 +21,9 @@ describe('\"Champion Masteries\" service', () => {
       nock(host)
         .get(`${championMasteriesEndpoint}/mock-id-200?api_key=${config.riotGamesApiKey}`)
         .reply(200, mockChampionMasteries);
+      nock(config.riotDDragonBaseUrl)
+        .get('/api/versions.json')
+        .reply(200, ['12.22.1']);
 
       const params = {
         query: {
@@ -37,7 +40,7 @@ describe('\"Champion Masteries\" service', () => {
       expect(summoner.name).to.equal('MockSummoner200');
       expect(summoner.summonerLevel).to.equal(100);
       expect(summoner.revisionDate).to.equal(1563157688000);
-      expect(summoner.profileIconUrl).to.equal('http://ddragon.leagueoflegends.com/cdn/10.18.1/img/profileicon/2098.png');
+      expect(summoner.profileIconUrl).to.equal(`${config.riotDDragonBaseUrl}/cdn/12.22.1/img/profileicon/2098.png`);
 
       const championMasteries = championMasteriesResponse.championMasteries;
 
@@ -52,7 +55,7 @@ describe('\"Champion Masteries\" service', () => {
       expect(championMasteries[0].chestGranted).to.equal(true);
       expect(championMasteries[0].tokensEarned).to.equal(0);
       expect(championMasteries[0].championSquareAssetUrl).to.equal(
-        'http://ddragon.leagueoflegends.com/cdn/10.18.1/img/champion/Gangplank.png');
+        `${config.riotDDragonBaseUrl}/cdn/12.22.1/img/champion/Gangplank.png`);
     }
   );
 
@@ -87,6 +90,9 @@ describe('\"Champion Masteries\" service', () => {
     nock(host)
       .get(`${championMasteriesEndpoint}/mock-id-404?api_key=${config.riotGamesApiKey}`)
       .reply(404, mock404Error);
+    nock(config.riotDDragonBaseUrl)
+      .get('/api/versions.json')
+      .reply(200, ['12.22.1']);
 
     const params = {
       query: {

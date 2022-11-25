@@ -31,6 +31,10 @@ class ChampionMasteriesService {
         }
       });
 
+      // Fetch the latest Data Dragon version and the build Data Dragon URL
+      const dDragonVersions = await axios.get(`${config.riotDDragonBaseUrl}/api/versions.json`);
+      const dDragonUrl = `${config.riotDDragonBaseUrl}/cdn/${dDragonVersions.data[0]}`;
+
       // For each Champion Mastery entry, attach the Champion name using the static map of Champion IDs to Champion names
       // We also want to attach the square asset URL so that the UI has it readily available
       // Furthermore, remove the "summonerId" attribute
@@ -39,14 +43,14 @@ class ChampionMasteriesService {
         championMastery.championId = championMapping.id;
         championMastery.championName = championMapping.name;
         championMastery.championSquareAssetUrl =
-          `${config.riotDDragonBaseUrl}/img/champion/${championMastery.championId}.png`;
+          `${dDragonUrl}/img/champion/${championMastery.championId}.png`;
         delete championMastery.summonerId;
         return championMastery;
       });
 
       // We want to respond with the relevant Summoner data and decorated Champion Mastery data
       // First, let's add the Summoner's profile icon URL so that the UI has it readily available
-      summoner.profileIconUrl = `${config.riotDDragonBaseUrl}/img/profileicon/${summoner.profileIconId}.png`;
+      summoner.profileIconUrl = `${dDragonUrl}/img/profileicon/${summoner.profileIconId}.png`;
 
       // Then, let's remove the unnecessary Summoner attributes
       delete summoner.id;
