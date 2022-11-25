@@ -31,7 +31,7 @@ class ChampionMasteriesService {
         }
       });
 
-      // Fetch the latest Data Dragon version and the build Data Dragon URL
+      // Fetch the latest Data Dragon version and build the Data Dragon URL
       const dDragonVersions = await axios.get(`${config.riotDDragonBaseUrl}/api/versions.json`);
       const dDragonUrl = `${config.riotDDragonBaseUrl}/cdn/${dDragonVersions.data[0]}`;
 
@@ -42,8 +42,7 @@ class ChampionMasteriesService {
         const championMapping = keyToChampionMap[championMastery['championId']];
         championMastery.championId = championMapping.id;
         championMastery.championName = championMapping.name;
-        championMastery.championSquareAssetUrl =
-          `${dDragonUrl}/img/champion/${championMastery.championId}.png`;
+        championMastery.championSquareAssetUrl = `${dDragonUrl}/img/champion/${championMastery.championId}.png`;
         delete championMastery.summonerId;
         return championMastery;
       });

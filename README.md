@@ -12,10 +12,6 @@ This REST API was developed using [FeathersJS](https://feathersjs.com/).
 
 A Riot Games API key is required to use this REST API. The REST API is set up to consume the API key via environment variable `RIOT_GAMES_API_KEY` (see [config.js](https://github.com/abaran30/lolot-api/blob/master/config.js)). You can obtain an API key from the [Riot Games Developer portal](https://developer.riotgames.com/).
 
-### Riot Data Dragon URL
-
-Riot Games uses [Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon) for game data and assets. Because Data Dragon is versioned, this REST API fetches the Data Dragon URL stored in environment variable `RIOT_DDRAGON_BASE_URL` (ensure that this is set to the latest version).
-
 ### CORS
 
 The REST API is using CORS and an origin has to be set (see [app.js](https://github.com/abaran30/lolot-api/blob/master/app.js)). The origin can be set to environment variable `LOLOT_ORIGIN` (see [config.js](https://github.com/abaran30/lolot-api/blob/master/config.js)).
