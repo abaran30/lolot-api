@@ -37,7 +37,7 @@ npm install
 npm start
 ```
 
-4. The REST API will start locally on http://localhost:3030.
+4. The REST API will start locally on http://localhost:8080 (port set by default).
 
 ## Testing
 
