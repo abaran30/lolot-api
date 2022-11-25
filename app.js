@@ -34,4 +34,4 @@ const rateLimiter = expressRateLimit({
 
 app.use('api/champion-masteries', rateLimiter, new ChampionMasteriesService());
 
-app.listen(port, () => console.log('LOLOT REST API listening on http://localhost:3030'));
+app.listen(port, () => console.log(`LOLOT REST API listening on http://localhost:${port}`));
