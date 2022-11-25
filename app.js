@@ -9,7 +9,13 @@ const ChampionMasteriesService = require('./services/champion-masteries/champion
 const app = express(feathers());
 
 const corsOptions = {
-  origin: config.lolotOrigin,
+  origin: (origin, callback) => {
+    if (origin !== config.lolotOrigin) {
+      return callback(new Error('CORS policy violation'), false);
+    }
+
+    return callback(null, true)
+  },
   optionsSuccessStatus: 200
 };
 
